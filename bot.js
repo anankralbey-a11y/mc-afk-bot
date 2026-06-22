@@ -1,6 +1,6 @@
 const mineflayer = require('mineflayer');
 const express = require('express');
-const forge = require('minecraft-protocol-forge'); // 👈 Bütün modül çağrıldı
+const forge = require('minecraft-protocol-forge');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,25 +26,72 @@ function initBot() {
     console.log('Bot sunucuya bağlanmaya çalışıyor...');
     bot = mineflayer.createBot(botArgs);
 
-    // 🎭 YOL 2: MANUEL FORGE EL SIKIŞMASI (SPOOF)
-    // Bot, sunucuya "Ben de 1.12.2 Forge kullanıyorum" diye sahte veri gönderir
+    // 🎭 SUNUCUNUN İSTEDİĞİ TÜM MODLARI BURADA SAHTE OLARAK TANITIYORUZ
     bot.once('inject_allowed', () => {
         if (forge && forge.forgeHandshake) {
             forge.forgeHandshake(bot._client, {
                 forgeMods: [
+                    // Temel Forge Sistemleri
                     { modid: 'mcp', version: '9.42' },
                     { modid: 'FML', version: '8.0.99.99' },
-                    { modid: 'forge', version: '14.23.5.2860' }
+                    { modid: 'forge', version: '14.23.5.2860' },
+                    
+                    // Sunucunun Reddettiği Özel Modlar (Gerekli versiyonlarıyla birlikte)
+                    { modid: 'blockbuster', version: '2.7.1' },
+                    { modid: 'Blockbuster', version: '2.7.1' },
+                    
+                    { modid: 'ebwizardry', version: '4.3.18' },
+                    { modid: 'electroblobswizardry', version: '4.3.18' },
+                    
+                    { modid: 'gravitygun', version: '7.1.0' },
+                    { modid: 'GravityGun', version: '7.1.0' },
+                    
+                    { modid: 'mappet', version: '0.8' },
+                    { modid: 'Mappet', version: '0.8' },
+                    
+                    { modid: 'metamorph', version: '1.4' },
+                    { modid: 'Metamorph', version: '1.4' },
+                    
+                    { modid: 'moreplayermodels', version: '1.12.2' },
+                    { modid: 'MorePlayerModels', version: '1.12.2' },
+                    
+                    { modid: 'cfm', version: '6.3.0' },
+                    { modid: 'mrcrayfishsfurnituremod', version: '6.3.0' },
+                    
+                    { modid: 'pearlstudios', version: '1.0.0' },
+                    { modid: 'PearlStudios', version: '1.0.0' },
+                    
+                    { modid: 'securitycraft', version: 'v1.9.7' },
+                    { modid: 'SecurityCraft', version: 'v1.9.7' },
+                    { modid: 'securitycraft', version: '1.9.7' },
+                    
+                    { modid: 'techguns', version: '2.0.2.0' },
+                    { modid: 'Techguns', version: '2.0.2.0' },
+                    
+                    { modid: 'boralomod', version: '2.1.0' },
+                    { modid: 'boralo_mod', version: '2.1.0' },
+                    { modid: 'zabristudiosboralomod', version: '2.1.0' },
+                    
+                    { modid: 'ariesnitroxine', version: '1.0.0' },
+                    { modid: 'Ariesnitroxine', version: '1.0.0' },
+                    
+                    { modid: 'ichunutil', version: '7.2.0' },
+                    { modid: 'iChunUtil', version: '7.2.0' },
+                    
+                    { modid: 'rpmods', version: '1.0.0' },
+                    { modid: 'Rpmods', version: '1.0.0' },
+                    
+                    { modid: 'yokolma', version: '1.0.0' },
+                    { modid: 'Yokolma', version: '1.0.0' }
                 ]
             });
-            console.log("Forge el sıkışması manuel olarak başlatıldı.");
+            console.log("Gelişmiş sahte mod listesi başarıyla enjekte edildi!");
         }
     });
 
     bot.on('spawn', () => {
         console.log(`${bot.username} başarıyla sunucuya giriş yaptı!`);
         
-        // 🔑 Kayıt ve Giriş İşlemleri
         bot.chat('/register 321ret123'); 
         
         setTimeout(() => {
@@ -52,7 +99,6 @@ function initBot() {
             console.log('Kayıt/Giriş komutları gönderildi.');
         }, 1000);
 
-        // 🦘 AFK kalmamak için zıplama döngüsü
         setInterval(() => {
             if (bot.entity) {
                 bot.setControlState('jump', true);
