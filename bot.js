@@ -79,7 +79,13 @@ function initBot() {
                     { modid: 'Rpmods', version: '1.0.0' },
                     
                     { modid: 'yokolma', version: '1.0.0' },
-                    { modid: 'Yokolma', version: '1.0.0' }
+                    { modid: 'Yokolma', version: '1.0.0' },
+
+                    { modid: 'paradise', version: '1.8.0' },
+                    { modid: 'Paradise', version: '1.8.0' },
+
+                    { modid: 'duplicatestatfix', version: '1.0.0' },
+                    { modid: 'Duplicatestatfix', version: '1.0.0' }
                 ]
             });
             console.log("Gelişmiş sahte mod listesi (v-patch onaylı) enjekte edildi!");
