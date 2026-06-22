@@ -27,6 +27,18 @@ function initBot() {
 
     bot.on('spawn', () => {
         console.log(`${bot.username} başarıyla sunucuya giriş yaptı!`);
+        
+        // 🔑 OTOMATİK KAYIT VE GİRİŞ SİSTEMİ
+        // İlk giriş için kayıt komutu: (Bazı pluginler şifreyi 2 kez ister, sorun olursa '/register 321ret123 321ret123' yaparsın)
+        bot.chat('/register 321ret123'); 
+        
+        // Bot bağlantısı kopup tekrar girerse diye 1 saniye sonra login atıyoruz:
+        setTimeout(() => {
+            bot.chat('/login 321ret123');
+            console.log('Kayıt/Giriş komutları gönderildi.');
+        }, 1000);
+
+        // AFK Zıplama döngüsü
         setInterval(() => {
             if (bot.entity) {
                 bot.setControlState('jump', true);
