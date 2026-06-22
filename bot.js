@@ -26,17 +26,14 @@ function initBot() {
     console.log('Bot sunucuya bağlanmaya çalışıyor...');
     bot = mineflayer.createBot(botArgs);
 
-    // 🎭 SUNUCUNUN İSTEDİĞİ TÜM MODLARI BURADA SAHTE OLARAK TANITIYORUZ
     bot.once('inject_allowed', () => {
         if (forge && forge.forgeHandshake) {
             forge.forgeHandshake(bot._client, {
                 forgeMods: [
-                    // Temel Forge Sistemleri
                     { modid: 'mcp', version: '9.42' },
                     { modid: 'FML', version: '8.0.99.99' },
                     { modid: 'forge', version: '14.23.5.2860' },
                     
-                    // Sunucunun Reddettiği Özel Modlar (Gerekli versiyonlarıyla birlikte)
                     { modid: 'blockbuster', version: '2.7.1' },
                     { modid: 'Blockbuster', version: '2.7.1' },
                     
@@ -61,9 +58,9 @@ function initBot() {
                     { modid: 'pearlstudios', version: '1.0.0' },
                     { modid: 'PearlStudios', version: '1.0.0' },
                     
+                    // 🎯 SADECE "v" HARFİ OLANLARI BIRAKTIK, ÇAKIŞMA DÜZELDİ:
                     { modid: 'securitycraft', version: 'v1.9.7' },
                     { modid: 'SecurityCraft', version: 'v1.9.7' },
-                    { modid: 'securitycraft', version: '1.9.7' },
                     
                     { modid: 'techguns', version: '2.0.2.0' },
                     { modid: 'Techguns', version: '2.0.2.0' },
@@ -85,7 +82,7 @@ function initBot() {
                     { modid: 'Yokolma', version: '1.0.0' }
                 ]
             });
-            console.log("Gelişmiş sahte mod listesi başarıyla enjekte edildi!");
+            console.log("Gelişmiş sahte mod listesi (v-patch onaylı) enjekte edildi!");
         }
     });
 
