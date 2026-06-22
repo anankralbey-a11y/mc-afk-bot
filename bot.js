@@ -1,5 +1,6 @@
 const mineflayer = require('mineflayer');
 const express = require('express');
+const { autoVersionForge } = require('minecraft-protocol-forge'); // 👈 SİHİRLİ EKLENTİ BURADA
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ app.listen(port, () => {
 
 const botArgs = {
     host: '5.9.41.143', // Kendi IP'ni yaz
-    port: 25626,                // Kendi portunu yaz
+    port: 25626,        // Kendi portunu yaz
     username: 'AfkBot_724',     
     version: '1.12.2'           
 };
@@ -25,20 +26,20 @@ function initBot() {
     console.log('Bot sunucuya bağlanmaya çalışıyor...');
     bot = mineflayer.createBot(botArgs);
 
+    // 🎭 BOTUN YALAN SÖYLEDİĞİ (SPOOF) KISIM
+    // Sunucu hangi modları istiyorsa bot "Bende hepsi var" diye cevap verecek:
+    autoVersionForge(bot._client);
+
     bot.on('spawn', () => {
         console.log(`${bot.username} başarıyla sunucuya giriş yaptı!`);
         
-        // 🔑 OTOMATİK KAYIT VE GİRİŞ SİSTEMİ
-        // İlk giriş için kayıt komutu: (Bazı pluginler şifreyi 2 kez ister, sorun olursa '/register 321ret123 321ret123' yaparsın)
         bot.chat('/register 321ret123'); 
         
-        // Bot bağlantısı kopup tekrar girerse diye 1 saniye sonra login atıyoruz:
         setTimeout(() => {
             bot.chat('/login 321ret123');
             console.log('Kayıt/Giriş komutları gönderildi.');
         }, 1000);
 
-        // AFK Zıplama döngüsü
         setInterval(() => {
             if (bot.entity) {
                 bot.setControlState('jump', true);
@@ -47,7 +48,6 @@ function initBot() {
         }, 30000); 
     });
 
-    // 🕵️‍♂️ İŞTE BİZE GERÇEKLERİ SÖYLEYECEK OLAN KISIM:
     bot.on('kicked', (reason) => {
         console.log('❌ SUNUCUDAN ATILMA SEBEBİ:', reason);
     });
