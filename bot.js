@@ -1,6 +1,6 @@
 const mineflayer = require('mineflayer');
 const express = require('express');
-const { autoVersionForge } = require('minecraft-protocol-forge'); // 👈 SİHİRLİ EKLENTİ BURADA
+const { autoVersionForge } = require('minecraft-protocol-forge'); // 👈 SİHİRLİ EKLENTİ BURADA demiştim
 
 const app = express();
 const port = process.env.PORT || 3000;
