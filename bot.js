@@ -85,7 +85,10 @@ function initBot() {
                     { modid: 'Paradise', version: '1.8.0' },
 
                     { modid: 'duplicatestatfix', version: '1.0.0' },
-                    { modid: 'Duplicatestatfix', version: '1.0.0' }
+                    { modid: 'Duplicatestatfix', version: '1.0.0' },
+
+                    { modid: 'fakename', version: '1.2' },
+                    { modid: 'Fakename', version: '1.2' }
                 ]
             });
             console.log("Gelişmiş sahte mod listesi (v-patch onaylı) enjekte edildi!");
