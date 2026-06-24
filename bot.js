@@ -14,7 +14,7 @@ app.listen(port, () => {
 });
 
 const botArgs = {
-    host: '5.9.41.143', // Kendi IP'ni yaz
+    host: '5.9.41.143', // Kendi IP'ni yazgsss
     port: 25626,        // Kendi portunu yaz
     username: 'AfkBot_724',     
     version: '1.12.2'           
